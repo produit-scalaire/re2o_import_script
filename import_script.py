@@ -32,13 +32,13 @@ from users.models import Adherent, School, User
 
 # Paramaters
 
-PATH = "/var/www/re2o/re2o_import_script/list-users.csv"
-SCHOOL_ID = 52  # The school id in which to add the user
+PATH = "./list-users.csv"
+SCHOOL_ID = 1  # The school id in which to add the user
 ARTICLES = [
     (1, 4)
 ]  # The article to set to the user in the format (id, quantity). Let empty to add no article.
-PAYMENT_METHOD = 6  # Payment method for the articles.
-COMMENT = "GTL-SUMMER"  # Comment that will be added to every user created
+PAYMENT_METHOD = 1  # Payment method for the articles.
+COMMENT = "Example"  # Comment that will be added to every user created
 
 # Code
 
@@ -88,12 +88,11 @@ class CSVUser:
         Returns:
             Room: room object
         """
-        room = room.replace(".","-")
-        if room[-1] in [chr(65+i) for i in range(6)]:
-            room = room[:-1]+"-"+str(ord(room[-1])-64)
-        building_name = room[0]
-        building = Building.objects.get(name="Bâtiment "+building_name)
-        return Room.objects.get(building=building, name=room)
+        index = room.index(" ")
+        building_name = room[:index]
+        name = room[index + 1 :]
+        building = Building.objects.get(name=building_name)
+        return Room.objects.get(building=building, name=name)
 
 
 def read_file():
@@ -109,6 +108,25 @@ def read_file():
             user = CSVUser(row[0], row[1], row[2], row[3])
             users.append(user)
     return users
+
+
+def check_constraints(usernames):
+    """Check if one the usernames is already taken.
+
+    Args:
+        usernames (list of string): list of usernames
+
+    Raises:
+        Exception: ifone or more of the usernames is/are already taken.
+    """
+    query = Adherent.objects.filter(pseudo__in=usernames)
+    if query:
+        raise Exception(
+            "The following usernames are not unique : {}".format(
+                ", ".join([a.pseudo for a in query])
+            )
+        )
+
 
 def force_move(room):
     """Force the move from a room
@@ -133,19 +151,10 @@ def transaction():
     users = read_file()
     print("{} users detected".format(len(users)))
     print("Verifying that no conflict occurs for usernames")
-    for user in users:
-        ite = 1
-        query = Adherent.objects.filter(pseudo=user.username)
-        while not len(query) == 0:
-    	    print("The pseudo " + user.username + " is already taken...")
-    	    user.username = user.username+str(ite)
-    	    print("Thus " + user.username + " will be used !")
-    	    ite += 1
-    	    query = Adherent.objects.filter(pseudo=user.username)
+    check_constraints([user.username for user in users])
     print("Usernames OK")
     print("Creating accounts")
     for user in users:
-        print(user.username)
         force_move(user.room)
         Adherent.objects.create(
             surname=user.last_name,
