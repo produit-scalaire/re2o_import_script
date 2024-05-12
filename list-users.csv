@@ -1,4 +1,3 @@
-last name,first name,email,room
 SAHEBA,Sia,ssaheba@me.com,A002
 SHARMA,Aashwin,aash777sharma@gmail.com,A003
 STEVEN,Henry,hsteven3@gatech.edu,A004
@@ -76,13 +75,13 @@ TERALA,Anurag,aterala6@gatech.edu,E116
 UPPAL,Kavin,kavinkuppal@gmail.com,E118
 DEEPNARAIN,Rivash,deepnarainrivash@gmail.com,E202-2
 CHANDARIA,Dhruv,dchandaria3@gatech.edu,E203
-,,wwade9@gatech.edu,E205
+No,Name,wwade9@gatech.edu,E205
 TERRELL,Jack,terrelljack72@gmail.com,E206-1
 MONKS,Alexander,amonks3@gatech.edu,E212-1
 GUPTA,Aneesh,aneeshgupta1@gmail.com,E213
 ZHANG,Gracie,gzhang348@gatech.edu,E215
 CHERY,Lorika,lchery3@gatech.edu,E216
-CHOW,Tsz,tchow32@gatech.edu,E217
+CHOW,Tsz Shan,tchow32@gatech.edu,E217
 ZHAO,Bryan,chaochaobryan@gmail.com,G006
 GONSALVES,Rohan,rgonsalves9@gatech.edu,G008
 PATRICK,Richard,rpatrick32@gatech.edu,G015-2
@@ -94,7 +93,6 @@ LOCKE,Makenna,mlocke7@gatech.edu,G118
 SANGHVI,Devan,dsanghvi34@gatech.edu,G122
 DI,PIETRO,lpietro3@gatech.edu,G202-1
 GRESHAM,Andrew,agresham7@gatech.edu,G202-2
-,,,G204-2
 BRUNSON,Walt,cbrunson7@gatech.edu,G205-1
 HAKES,Colin,chakes6@gatech.edu,G205-2
 MUDALIAR,Ashwin,ashwinamudaliar@gmail.com,G206-1
@@ -102,4 +100,4 @@ CHANDRA,Anika,anika.chandra444@gmail.com,G207-1
 PENCHIKALA,Srihasa,penchikalasrihasa@gmail.com,G207-2
 HUNTER,Harsh,hharsh6@gatech.edu,G208-2
 CHADHA,Aryan,achadha36@gatech.edu,G220
-PETIT,JEAN,petitjeanvalentin@hotmail.fr,G223
+PETIT-JEAN,Valentin,petitjeanvalentin@hotmail.fr,G223
